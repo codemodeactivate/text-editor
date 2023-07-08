@@ -17,7 +17,7 @@ module.exports = () => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: 'src/index.html',
+        template: './index.html',
         title: 'J.A.T.E'
       }),
       new WebpackPwaManifest({
@@ -39,13 +39,14 @@ module.exports = () => {
         ],
       }),
       new InjectManifest({
-        swSrc: './src/sw.js', // point to your source service worker file
-        swDest: 'sw.js', // point to your final service worker file
+        swSrc: "./src-sw.js", // point to your source service worker file
+        swDest: "src-sw.js",
       }),
       new MiniCssExtractPlugin({
         filename: '[name].css',
       }),
     ],
+
 
     module: {
       rules: [
