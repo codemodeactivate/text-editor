@@ -12,10 +12,30 @@ const initdb = async () =>
     },
   });
 
-// TODO: Add logic to a method that accepts some content and adds it to the database
-export const putDb = async (content) => console.error('putDb not implemented');
+// Method that accepts some content and adds it to the database
+export const putDb = async (content) => {
+  try {
+    const db = await openDB('jate', 1);
+    const tx = db.transaction('jate', 'readwrite');
+    await tx.store.put({ content });
+    await tx.done;
+  } catch (error) {
+    console.error('putDb failed:', error);
+  }
+}
 
-// TODO: Add logic for a method that gets all the content from the database
-export const getDb = async () => console.error('getDb not implemented');
+// Method that gets all the content from the database
+export const getDb = async () => {
+  try {
+    const db = await openDB('jate', 1);
+    const tx = db.transaction('jate', 'readonly');
+    const store = tx.objectStore('jate');
+    return await store.getAll();
+  } catch (error) {
+    console.error('getDb failed:', error);
+  }
+}
+
+
 
 initdb();
