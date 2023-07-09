@@ -17,7 +17,6 @@
   ## Installation
   ```
   npm run install
-
   ```
   to install then
 
